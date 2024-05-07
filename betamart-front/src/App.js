@@ -35,6 +35,21 @@ function App() {
     }
   };
 
+  const handleShowModal = (message) => {
+    setModalMessage(message);
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => setShowModal(false);
+
+  if (!loggedIn) {
+    return (
+      <div className="vh-100 d-flex justify-content-center align-items-center">
+        <Login handleLogin={handleLogin} handleShowModal={handleShowModal} />
+      </div>
+    );
+  }
+
   return (
     <div className="bg-light p-5 rounded-3 shadow">
       <h2 className="text-center mb-4">Login</h2>
