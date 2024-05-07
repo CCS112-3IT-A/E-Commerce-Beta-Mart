@@ -51,6 +51,44 @@ function App() {
   }
 
   return (
+    <Router>
+      <Routes>
+        {isAdmin ? (
+          <>
+            <Route path="/" element={<AdminPage />} />
+          </>
+        ) : (
+          <>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/Shop" element={<Shop />} />
+          </>
+        )}
+      </Routes>
+      <Modal show={showModal} onHide={handleCloseModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Error</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>{modalMessage}</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseModal}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </Router>
+  );
+}
+
+function Login({ handleLogin, handleShowModal }) {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleLogin(email, password);
+  };
+
+  return (
     <div className="bg-light p-5 rounded-3 shadow">
       <h2 className="text-center mb-4">Login</h2>
       <Form onSubmit={handleSubmit}>
