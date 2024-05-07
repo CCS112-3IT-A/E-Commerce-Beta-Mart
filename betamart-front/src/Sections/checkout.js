@@ -13,3 +13,14 @@ const Checkout = ({ cartItems, onClose, onOrderSuccess }) => {
   const handleAddressChange = (e) => {
     setAddress(e.target.value);
   };
+
+  const handleSubmit = () => {
+    console.log("Address:", address);
+    console.log("Cart Items:", cartItems);
+    
+    // Simulate order processing (replace setTimeout with actual API call)
+    setTimeout(() => {
+      setOrderPlaced(true);
+      onOrderSuccess(); // Callback to reset ViewCart component
+    }, 2000);
+  };
