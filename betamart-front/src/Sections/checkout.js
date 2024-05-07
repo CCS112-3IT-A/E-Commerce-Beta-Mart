@@ -43,3 +43,40 @@ const Checkout = ({ cartItems, onClose, onOrderSuccess }) => {
               <Form.Group controlId="name">
                 <Form.Label>Name</Form.Label>
                 <Form.Control type="text" placeholder="Enter your name" value={name} onChange={handleNameChange} />
+
+                </Form.Group>
+              <Form.Group controlId="address">
+                <Form.Label>Address</Form.Label>
+                <Form.Control type="text" placeholder="Enter your address" value={address} onChange={handleAddressChange} />
+              </Form.Group>
+            </Form>
+            <hr />
+            <h4>Cart Items:</h4>
+            {cartItems.map((item) => (
+              <Card key={item.id} className="mb-3">
+                <Card.Body>
+                  <Card.Title>{item.name}</Card.Title>
+                  <Card.Text>Price: ${item.price}</Card.Text>
+                  <Card.Text>Quantity: {item.quantity}</Card.Text>
+                </Card.Body>
+              </Card>
+            ))}
+            <p>Total Price: ${totalPrice}</p>
+          </div>
+        )}
+      </Modal.Body>
+      <Modal.Footer>
+        <Button variant="secondary" onClick={onClose}>
+          Close
+        </Button>
+        {!orderPlaced && (
+          <Button variant="primary" onClick={handleSubmit} disabled={!name || !address}>
+            Place Order
+          </Button>
+        )}
+      </Modal.Footer>
+    </Modal>
+  );
+};
+
+export default Checkout;
