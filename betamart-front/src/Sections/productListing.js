@@ -4,6 +4,32 @@ import AddToCart from './addtoCart';
 import ViewCart from './viewCart';
 
 const ProductListing = () => {
+
+
+    
+    const [products, setProducts] = useState([]);
+    const [cart, setCart] = useState([]);
+  
+    useEffect(() => {
+      fetch('http://127.0.0.1:8000/api/list')
+        .then(response => response.json())
+        .then(data => setProducts(data))
+        .catch(error => console.error('Error fetching products:', error));
+    }, []);
+  
+    const addToCart = (product) => {
+      setCart(prevCart => [...prevCart, product]);
+    };
+  
+    const updateQuantity = (product, quantity) => {
+      setCart(prevCart =>
+        prevCart.map(item => (item.id === product.id ? { ...item, quantity: quantity } : item))
+      );
+    };
+  
+    const removeFromCart = (product) => {
+      setCart(prevCart => prevCart.filter(item => item.id !== product.id));
+    };
   
   return (
     <Container>
