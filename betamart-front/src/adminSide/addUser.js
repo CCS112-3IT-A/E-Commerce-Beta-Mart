@@ -13,4 +13,12 @@ const AddUser = ({ onAddUser }) => {
     setError('');
   };
 
-  
+  const handleShow = () => setShow(true);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (password !== retypePassword) {
+      setError('Passwords do not match');
+      return;
+    }
