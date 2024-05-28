@@ -23,8 +23,60 @@ class UserController extends Controller
        if ($password !== $user->password) {
             return response()->json(['error' => 'Wrong password'], 401);
         }
-    
+        return $user;
+    }
+
+
+
+    function register(Request $req){
+
+        $user= new webuser;
+        $user -> email = $req->input('email');
+        $user -> password = $req->input('password');
+        $user->save();
 
         return $user;
     }
+
+    function userList(){
+
+        return webuser::all();
+
+    }
+
+
+
+    function updateUser(Request $req, $id) {
+        
+        $user = webuser::find($id);
+    
+        if (!$user) {
+            return response()->json(['error' => 'User not found'], 404);
+        } else {
+            $user -> email = $req->input('email');
+            $user -> password = $req->input('password');
+            
+            $user->save();
+    
+            return response()->json($user);
+        }
+    }
+
+
+
+    public function removeUser($id)
+    {
+        $user = webuser::find($id);
+
+
+        if (!$user) {
+            return response()->json(['error' => 'User not found'], 404);
+        }
+
+        $user->delete();
+        
+        return response()->json(null, 204);
+    }
+
+
 }
