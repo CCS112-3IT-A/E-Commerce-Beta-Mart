@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Container, Navbar, Nav, Row, Col, Card } from 'react-bootstrap';
 import AdminList from './adminList';
-import AddProduct from './addProduct';
+import UserList from './userList';
 
 const AdminPage = () => {
+  const [activeButton, setActiveButton] = useState('Product');
+
+  const handleButtonClick = (button) => {
+    setActiveButton(button);
+  };
+
   return (
     <>
       {/* Navbar */}
@@ -21,21 +27,36 @@ const AdminPage = () => {
       </Navbar>
 
       {/* Main Content */}
-      <Container>
+      <Container fluid>
         <Row>
-          <Col md={8}>
-            <Card className="mb-4">
+          <Col md={3}>
+            <Card>
               <Card.Body>
-                <Card.Title>Admin Product List</Card.Title>
-                <AdminList />
+                <Card.Title>Navigation</Card.Title>
+                <Nav variant="pills" className="flex-column">
+                  <Nav.Link
+                    active={activeButton === 'Product'}
+                    onClick={() => handleButtonClick('Product')}
+                  >
+                    Product
+                  </Nav.Link>
+                  <Nav.Link
+                    active={activeButton === 'User'}
+                    onClick={() => handleButtonClick('User')}
+                  >
+                    User
+                  </Nav.Link>
+                </Nav>
               </Card.Body>
             </Card>
           </Col>
-          <Col md={4}>
-            <Card>
+          <Col md={9}>
+            <Card className="mb-4">
               <Card.Body>
-                <Card.Title>Add Product</Card.Title>
-                <AddProduct />
+                <Card.Title>
+                  {activeButton === 'Product' ? 'Admin Product List' : 'Admin User List'}
+                </Card.Title>
+                {activeButton === 'Product' ? <AdminList /> : <UserList/>}
               </Card.Body>
             </Card>
           </Col>
