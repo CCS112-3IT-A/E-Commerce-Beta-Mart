@@ -23,33 +23,20 @@ class ProductController extends Controller
     }
 
 
-
-    function updateProduct(Request $req, $id) {
-        $product = Product::find($id);
-    
-        if (!$product) {
-            return response()->json(['error' => 'Product not found'], 404);
-        } else {
-            $product->productName = $req->input('productName');
-            $product->productPrice = $req->input('productPrice');
-            $product->productDesc = $req->input('productDesc');
-            $product->save();
-    
-            return response()->json($product);
-        }
-    }
-
-
-    public function removeProduct($id)
+    function delete($productId)
     {
-        $product = Product::find($id);
-        if (!$product) {
-            return response()->json(['error' => 'Product not found'], 404);
-        }
-        $product->delete();
 
-        return response()->json(null, 204);
+        return $productId;
     }
+
+    function getProduct($productId)
+    {
+        return Product::find($productId);
+
+    }
+
+
     
 }
+
 
