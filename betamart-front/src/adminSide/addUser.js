@@ -58,5 +58,19 @@ const AddUser = ({ onAddUser }) => {
             <Modal.Header closeButton>
               <Modal.Title>Add User</Modal.Title>
             </Modal.Header>
-
-            
+            <Modal.Body>
+          {error && <Alert variant="danger">{error}</Alert>}
+          <Form onSubmit={handleSubmit}>
+            <Row>
+              <Col md={12}>
+                <Form.Group controlId="formEmail">
+                  <Form.Label>Email</Form.Label>
+                  <Form.Control
+                    type="email"
+                    placeholder="Enter email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                </Form.Group>
+              </Col>
+            </Row>
