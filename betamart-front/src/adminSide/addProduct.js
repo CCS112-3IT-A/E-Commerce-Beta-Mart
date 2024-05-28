@@ -46,3 +46,52 @@ const AddProduct = ({ onAddProduct }) => {
         <Modal.Header closeButton>
           <Modal.Title>Add Product</Modal.Title>
         </Modal.Header>
+        <Modal.Body>
+          <Form onSubmit={handleSubmit}>
+            <Row>
+              <Col md={6}>
+                <Form.Group controlId="formProductName">
+                  <Form.Label>Product Name</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Enter product name"
+                    value={productName}
+                    onChange={(e) => setProductName(e.target.value)}
+                  />
+                </Form.Group>
+              </Col>
+              <Col md={6}>
+                <Form.Group controlId="formProductPrice">
+                  <Form.Label>Product Price</Form.Label>
+                  <Form.Control
+                    type="number"
+                    placeholder="Enter product price"
+                    value={productPrice}
+                    onChange={(e) => setProductPrice(e.target.value)}
+                  />
+                </Form.Group>
+              </Col>
+            </Row>
+            <Form.Group controlId="formProductDesc">
+              <Form.Label>Product Description</Form.Label>
+              <Form.Control
+                as="textarea"
+                rows={3}
+                placeholder="Enter product description"
+                value={productDesc}
+                onChange={(e) => setProductDesc(e.target.value)}
+              />
+            </Form.Group>
+            <div className="text-center mt-3">
+              <Button variant="primary" type="submit">
+                Add Product
+              </Button>
+            </div>
+          </Form>
+        </Modal.Body>
+      </Modal>
+    </>
+  );
+};
+
+export default AddProduct;
