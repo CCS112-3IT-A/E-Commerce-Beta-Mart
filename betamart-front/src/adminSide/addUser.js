@@ -74,3 +74,42 @@ const AddUser = ({ onAddUser }) => {
                 </Form.Group>
               </Col>
             </Row>
+            <Row>
+              <Col md={12}>
+                <Form.Group controlId="formPassword">
+                  <Form.Label>Password</Form.Label>
+                  <Form.Control
+                    type="password"
+                    placeholder="Enter password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                </Form.Group>
+              </Col>
+            </Row>
+            <Row>
+              <Col md={12}>
+                <Form.Group controlId="formRetypePassword">
+                  <Form.Label>Retype Password</Form.Label>
+                  <Form.Control
+                    type="password"
+                    placeholder="Retype password"
+                    value={retypePassword}
+                    onChange={(e) => setRetypePassword(e.target.value)}
+                  />
+                </Form.Group>
+              </Col>
+            </Row>
+            <div className="text-center mt-3">
+              <Button variant="primary" type="submit">
+                Add User
+              </Button>
+            </div>
+          </Form>
+        </Modal.Body>
+      </Modal>
+    </>
+  );
+};
+
+export default AddUser;
