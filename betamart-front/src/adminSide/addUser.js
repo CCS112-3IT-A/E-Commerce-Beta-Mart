@@ -22,7 +22,7 @@ const AddUser = ({ onAddUser }) => {
       setError('Passwords do not match');
       return;
     }
-    
+
     try {
         const response = await fetch('http://127.0.0.1:8000/api/register', {
           method: 'POST',
@@ -48,3 +48,15 @@ const AddUser = ({ onAddUser }) => {
         setError('An error occurred');
       }
     };
+
+    return (
+        <>
+          <Button variant="primary" onClick={handleShow} className="mb-3">
+            Add User
+          </Button>
+          <Modal show={show} onHide={handleClose} centered>
+            <Modal.Header closeButton>
+              <Modal.Title>Add User</Modal.Title>
+            </Modal.Header>
+
+            
