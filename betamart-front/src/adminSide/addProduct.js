@@ -20,3 +20,29 @@ const AddProduct = ({ onAddProduct }) => {
         },
         body: JSON.stringify({ productName, productPrice, productDesc }),
       });
+
+      if (response.ok) {
+        const newProduct = await response.json();
+        console.log('Product added successfully');
+        onAddProduct(newProduct); // Call the callback function with the new product data
+        setProductName('');
+        setProductPrice('');
+        setProductDesc('');
+        handleClose(); // Close the modal
+      } else {
+        console.error('Failed to add product');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
+  return (
+    <>
+      <Button variant="primary" onClick={handleShow} className="mb-3">
+        Add Product
+      </Button>
+      <Modal show={show} onHide={handleClose} centered>
+        <Modal.Header closeButton>
+          <Modal.Title>Add Product</Modal.Title>
+        </Modal.Header>
