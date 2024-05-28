@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Modal, Button, Form, Row, Col } from 'react-bootstrap';
 
-const AddProduct = () => {
+const AddProduct = ({ onAddProduct }) => {
   const [show, setShow] = useState(false);
   const [productName, setProductName] = useState('');
   const [productPrice, setProductPrice] = useState('');
@@ -20,9 +20,11 @@ const AddProduct = () => {
         },
         body: JSON.stringify({ productName, productPrice, productDesc }),
       });
+
       if (response.ok) {
+        const newProduct = await response.json();
         console.log('Product added successfully');
-        // Reset the form fields
+        onAddProduct(newProduct); // Call the callback function with the new product data
         setProductName('');
         setProductPrice('');
         setProductDesc('');
