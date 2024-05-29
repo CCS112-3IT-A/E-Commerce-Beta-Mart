@@ -8,8 +8,8 @@ import DeleteUser from './removeUser';
 const UserList = () => {
   const [users, setUsers] = useState([]);
   const [selectedUser, setSelectedUser] = useState(null);
-
-  useEffect(() => {
+ 
+   useEffect(() => {
     fetchUsers();
   }, []);
 
